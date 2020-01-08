@@ -1,0 +1,13 @@
+<nav class="navbar navbar-light bg-dark navbar-expand-sm py-0" id="navbar">
+    <a class="nav-link px-3 py-4" href="/"> Home </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
+    <i class="fas fa-bars"></i></button>
+    <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle py-4 px-2" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Switch Goals</a>
+        <div class="dropdown-menu m-0" aria-labelledby="navbarDropdown">
+            <% goalsArr.forEach(function(goal){ %>
+                <a href="/months/<%=goal._id%>/2019/12" class="nav-link"> <%=goal.goal %> </a>
+            <% }); %>
+        </div>
+    </div>
+</nav>

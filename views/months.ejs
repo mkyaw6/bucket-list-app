@@ -1,0 +1,81 @@
+<%- include('partials/header.ejs') %>
+<link type="text/css" rel="stylesheet" href="/css/months.css">
+</head>
+<body>
+    <%- include('partials/navbar.ejs', {goalsArr:goalsArr}) %>
+    <% var monthsList=[
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+    ]; %>
+    <% var daysOfWeek=['Sunday', 'Monday', 'Tuesday','Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var daysArray= getDaysInMonth(year,month)
+    var firstDate= new Date(year,month-1);
+    var firstDayOfWeek= firstDate.getDay();
+    var dayPadding= (42-daysArray.length-firstDayOfWeek)%7;
+    //setup for next and previous buttons
+    var prevMonth=month-1;
+    var nextMonth=month+1
+    var nextYear= prevYear =year;
+    if(nextMonth>12){
+        nextYear=year+1;
+        nextMonth=1;
+    }
+    if(prevMonth<1){
+        prevYear= year-1;
+        prevMonth=12;
+    }
+
+    %>
+    <div class="background">
+        <div class="container">
+            <div class="text-center">
+                <h1><%= goalStr%></h1>
+                <form action="/months/<%= goalId%>/<%=prevYear%>/<%=prevMonth%>" method="GET" class="d-inline-block">
+                    <button type="submit" class="btn btn-primary"> Prev </button>
+                </form>
+                <p class="text-center d-inline-block"><%= monthsList[month-1]+" "+year%></p>
+                <form action="/months/<%= goalId%>/<%=nextYear%>/<%=nextMonth%>" method="GET" class="d-inline-block">
+                    <button type="submit" class="btn btn-primary"> Next </button>
+                </form>
+            </div>
+            
+            <!-- Calendar -->
+            <div class="row text-center">
+                <%daysOfWeek.forEach(function(dayOfWeek){ %>
+                    <div class="day-of-week border px-3 py-4">
+                        <%= dayOfWeek %>
+                    </div>
+                <%})%>
+                <%for(i=0;i<firstDayOfWeek;i++){%>
+                    <div class="border bg-dark" style="flex: 0 0 14.28%; max-width: 14.28%;width: 100%; height:5.5em;"></div>        
+                <%}%>
+                <%daysArray.forEach(function(day){ %>
+                    <div class="border" style="flex: 0 0 14.28%; max-width: 14.28%;width: 100%; height:5.5em;">
+                        <form action="/months/<%= goalId%>/<%=year%>/<%=month%>/<%=day%>" method="GET">
+                            <button type="submit" style="width: 100%; height:5.5em;">
+                                <%if(entryArr.includes(day)){%>
+                                    <span>Streak</span> 
+                                <%}%>
+                                <%= day %>
+                            </button>
+                        </form>
+                        
+                    </div>
+                <%});%>
+                <%for(i=0;i<dayPadding;i++){%>
+                    <div class="border bg-dark" style="flex: 0 0 14.28%; max-width: 14.28%;width: 100%; height:5.5em;"></div>        
+                <%}%>
+            </div>
+        </div>
+    </div>
+<%- include("partials/footer.ejs");%>

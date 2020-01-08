@@ -1,0 +1,22 @@
+<%- include('partials/header.ejs') %>
+<link type="text/css" rel="stylesheet" href="/css/edit+new.css">
+</head>
+<body>
+    <div class="background">
+        <div class="container">
+            <h1 class="text-center">Edit the Bucket!</h1>
+            <a href="/months/<%=goalId%>/<%=year%>/<%=month%>/<%=day%>" class="btn btn-primary">Back</a>
+            <form action="/months/<%=goalId%>/<%=year%>/<%=month%>/<%=day%>/<%=entry._id%>?_method=PUT" method="POST" class="text-center">
+                <label for="date">Date:</label> <br>
+                <input type="date" name="date" id="date" required value="<%=entry.date %>" title="Enter a date!"> <br>
+                <label for="entry">Progress:</label> <br>
+                <textarea rows="5" cols="50" name="progress" id="progress" required title="Enter your progress!"><%=entry.progress %> </textarea> <br>
+                <label for="entry">Hours:</label> <br>
+                <input type="number" name="hours" id="hours" step="0.5" min="0" max="24" required value="<%=entry.hours %>" title="Enter your hours!"> 
+                <br>
+                <br>
+                <button type="submit" class="btn btn-success">Submit Changes</button>
+            </form>
+        </div>
+    </div>
+<%- include("partials/footer.ejs");%>

@@ -1,0 +1,39 @@
+<%- include('partials/header.ejs') %>
+<link type="text/css" rel="stylesheet" href="/css/days.css">
+</head>
+<body>
+    <div class="background">
+        <div class="container"> 
+            <a href="/months/<%=goalId%>/<%=year%>/<%=month%>" class="btn btn-primary">Back To Month</a> 
+            <br>
+            <br>
+            <table border="1" class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" class="dateCol">Date</td>
+                        <th scope="col" class="itemCol">Item</td>
+                        <th scope="col" class="hoursCol">Hours</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% entries.forEach(function(entry){ %>
+                    <tr>
+                        <td class="dateCol"><%= entry.date %></td>
+                        <td class="progressCol"><%= entry.progress %></td>
+                        <td class="hourCol"><%= entry.hours %></td>
+                        <td class="deleteCol">
+                            <form action="/months/<%=goalId%>/<%=year%>/<%=month%>/<%=day%>/<%=entry._id%>?_method=DELETE" method="POST">
+                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                            </form>
+                        </td>
+                        <td class="editCol"><a href="/months/<%=goalId%>/<%=year%>/<%=month%>/<%=day%>/<%= entry._id %>/edit" class="btn btn-secondary"><i class="fas fa-edit"></i></a></td>
+                    </tr>           
+                    <%})%> 
+                </tbody>
+            </table>
+            <a href="/months/<%=goalId%>/<%=year%>/<%=month%>/<%=day%>/new" class="btn btn-primary">Add an entry</a>
+        </div>
+    </div>
+
+
+<%- include("partials/footer.ejs");%>

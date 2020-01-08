@@ -1,0 +1,25 @@
+<%- include('partials/header.ejs') %>
+    <link type="text/css" rel="stylesheet" href="/css/landing.css">
+    </head>
+<body>
+    <div class="background text-center">
+        <div>
+                <h1 >What would you like to achieve?</h1 >
+                <!-- creates list of all goals from database, links to months view and adds delete functionality -->
+                <% goalsArr.forEach(function(goal){ %>
+                    <div class="goal-list" style="display: flex;">
+                        <a href="/months/<%=goal._id%>" class="btn btn-light goal-link"> <%=goal.goal %> </a>
+                        <form action="/<%=goal._id%>?_method=DELETE" method="POST">
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </div>
+                <% }); %>
+            <br>
+            <form action="/" method="POST">
+                <h3>Or, enter a new goal:</h3>
+                <input type="text" name="goal" class="form-control form-control-md" required>
+                <button type="submit" class="btn btn-success">Get Started</button>
+            </form>
+        </div>
+    </div>
+<%- include("partials/footer.ejs");%>
