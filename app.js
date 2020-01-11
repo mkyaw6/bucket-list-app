@@ -18,7 +18,7 @@ app.use(monthsRoutes);
 app.use(landingRoutes);
 
 //connecting to the mongo database
-MongoClient.connect("mongodb://localhost:27017",{ useUnifiedTopology: true }, function(err, client) {
+MongoClient.connect(process.env.bucketListDBURI,{ useUnifiedTopology: true }, function(err, client) {
     if(!err) {
         console.log("We are connected");
     }
@@ -26,7 +26,7 @@ MongoClient.connect("mongodb://localhost:27017",{ useUnifiedTopology: true }, fu
     //creates collection variable to use in routes
     entriesCollection=db.collection("Entries_Collection");
     goalsCollection=db.collection("Goals_Collection");
-    app.listen(3000,function(){
+    app.listen(3000|| process.env.PORT, process.env.IP, function(){
         console.log("Server running on port 3000");
     });
 });
