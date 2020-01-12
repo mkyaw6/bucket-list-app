@@ -18,7 +18,7 @@ app.use(monthsRoutes);
 app.use(landingRoutes);
 
 //connecting to the mongo database
-MongoClient.connect(process.env.bucketListDBURI,{ useUnifiedTopology: true }, function(err, client) {
+MongoClient.connect("mongodb+srv://minhtatdx00:"+process.env.password+"@bucketlistapp-0xqg4.mongodb.net/test?retryWrites=true&w=majority",{ useUnifiedTopology: true }, function(err, client) {
     if(!err) {
         console.log("We are connected");
     }
