@@ -43,7 +43,7 @@
                 <form action="/months/<%= goalId%>/<%=prevYear%>/<%=prevMonth%>" method="GET" class="d-inline-block">
                     <button type="submit" class="btn btn-primary"> Prev </button>
                 </form>
-                <p class="text-center d-inline-block"><%= monthsList[month-1]+" "+year%></p>
+                <h4 class="text-center d-inline-block"><%= monthsList[month-1]+" "+year%></h4>
                 <form action="/months/<%= goalId%>/<%=nextYear%>/<%=nextMonth%>" method="GET" class="d-inline-block">
                     <button type="submit" class="btn btn-primary"> Next </button>
                 </form>
@@ -62,7 +62,7 @@
                 <%daysArray.forEach(function(day){ %>
                     <div class="border" style="flex: 0 0 14.28%; max-width: 14.28%;width: 100%; height:5.5em;">
                         <form action="/months/<%= goalId%>/<%=year%>/<%=month%>/<%=day%>" method="GET">
-                            <button type="submit" style="width: 100%; height:5.5em;">
+                            <button class="day" type="submit" style="width: 100%; height:5.5em;">
                                 <%if(entryArr.includes(day)){%>
                                     <span>Streak</span> 
                                 <%}%>
@@ -78,4 +78,5 @@
             </div>
         </div>
     </div>
+    <script src="/javascript/monthsScript.js"></script>
 <%- include("partials/footer.ejs");%>

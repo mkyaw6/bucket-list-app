@@ -7,26 +7,32 @@
             <a href="/months/<%=goalId%>/<%=year%>/<%=month%>" class="btn btn-primary">Back To Month</a> 
             <br>
             <br>
+            <h1 class="text-center"><%=month%>/<%-day%>,<%=year%></h1>
             <table border="1" class="table">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col" class="dateCol">Date</td>
-                        <th scope="col" class="itemCol">Item</td>
+                        <th scope="col" class="progressCol">Progress</td>
                         <th scope="col" class="hoursCol">Hours</td>
                     </tr>
                 </thead>
                 <tbody>
                     <% entries.forEach(function(entry){ %>
-                    <tr>
+                    <tr class="item">
                         <td class="dateCol"><%= entry.date %></td>
                         <td class="progressCol"><%= entry.progress %></td>
-                        <td class="hourCol"><%= entry.hours %></td>
-                        <td class="deleteCol">
-                            <form action="/months/<%=goalId%>/<%=year%>/<%=month%>/<%=day%>/<%=entry._id%>?_method=DELETE" method="POST">
-                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                            </form>
+                        <td class="hoursCol">
+                            <div class="hoursColContent">
+                                <%= entry.hours %>
+                                <div class="responsiveButtons">
+                                    <form action="/months/<%=goalId%>/<%=year%>/<%=month%>/<%=day%>/<%=entry._id%>?_method=DELETE" method="POST">
+                                        <button type="submit" class="btn btn-danger deleteButton"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
+                                    <a href="/months/<%=goalId%>/<%=year%>/<%=month%>/<%=day%>/<%= entry._id %>/edit" class="btn btn-secondary editButton"><i class="fas fa-edit"></i></a>
+                                </div>
+                            </div>
                         </td>
-                        <td class="editCol"><a href="/months/<%=goalId%>/<%=year%>/<%=month%>/<%=day%>/<%= entry._id %>/edit" class="btn btn-secondary"><i class="fas fa-edit"></i></a></td>
+                        
                     </tr>           
                     <%})%> 
                 </tbody>

@@ -12,3 +12,27 @@
 tbody{
     background-color: whitesmoke;
 }
+.hoursColContent{
+    display: flex;  
+    justify-content: space-between;
+    min-height: 40px;
+}
+.responsiveButtons{
+    display:none;
+}
+td{
+    padding:0px!important;
+}
+form{
+    height:100%
+}
+.btn{
+    height:100%!important;
+}
+.dateCol, .hoursCol{
+    width: 20%;
+}
+tr:hover .responsiveButtons{
+    display:flex;
+    transition: 0.5s linear;
+}
