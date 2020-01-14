@@ -36,3 +36,12 @@ h1{
     box-shadow: inset 0 0 10px grey;
     transition-duration: 100ms;
 }
+.streak{
+    color:green;
+    background-color:rgb(228, 241, 207);
+    font-weight: bolder;
+}
+.streak:hover {
+    
+    transition-duration: 0.5s;
+}

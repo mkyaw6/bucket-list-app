@@ -2,12 +2,26 @@
 <link type="text/css" rel="stylesheet" href="/css/days.css">
 </head>
 <body>
+    <% var monthsList=[
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+    ]; %>
     <div class="background">
         <div class="container"> 
             <a href="/months/<%=goalId%>/<%=year%>/<%=month%>" class="btn btn-primary">Back To Month</a> 
             <br>
             <br>
-            <h1 class="text-center"><%=month%>/<%-day%>,<%=year%></h1>
+            <h1 class="text-center"><%=monthsList[month-1]%> <%-day%>, <%=year%></h1>
             <table border="1" class="table">
                 <thead class="thead-dark">
                     <tr>
