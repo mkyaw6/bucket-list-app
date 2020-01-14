@@ -3,6 +3,7 @@
 </head>
 <body>
     <%- include('partials/navbar.ejs', {goalsArr:goalsArr}) %>
+    <%- include('partials/calendarData.ejs', {goalsArr:goalsArr}) %>
     <% var monthsList=[
         'January',
         'February',
@@ -62,14 +63,16 @@
                 <%daysArray.forEach(function(day){ %>
                     <div class="border" style="flex: 0 0 14.28%; max-width: 14.28%;width: 100%; height:5.5em;">
                         <form action="/months/<%= goalId%>/<%=year%>/<%=month%>/<%=day%>" method="GET">
-                            <button class="day" type="submit" style="width: 100%; height:5.5em;">
-                                <%if(entryArr.includes(day)){%>
-                                    <span>Streak</span> 
-                                <%}%>
-                                <%= day %>
-                            </button>
+                            <%if(entryArr.includes(day)){%>
+                                <button class="day streak" type="submit" style="width: 100%; height:5.5em;">
+                                    <%= day %>
+                                </button>
+                                <%}else{%>
+                                <button class="day" type="submit" style="width: 100%; height:5.5em;">  
+                                    <%= day %>
+                                </button>
+                            <%}%>
                         </form>
-                        
                     </div>
                 <%});%>
                 <%for(i=0;i<dayPadding;i++){%>
