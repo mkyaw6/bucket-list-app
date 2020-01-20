@@ -2,7 +2,7 @@ const express=require('express');
 const router= express.Router({mergeParams: true});
 const ObjectId = require('mongodb').ObjectId;
 
-//FIX PADDING ISSUE
+//FUNCTION WHICH RETURNS A FORMATTED DATE STRING
 function getDateString(day,month,year){
     if(day.length===1){
         day="0"+day;
@@ -28,7 +28,7 @@ router.post("/months/:goalId/:year/:month/:day",function(req,res){
     res.redirect("/months/"+goalId+"/"+year+"/"+month+"/"+day);
 });
 
-//INDEX ROUTE FOR EACH DAY
+//GET ROUTE FOR INDEX OF EACH DAY
 router.get("/months/:goalId/:year/:month/:day", function(req,res){
     var dateString=getDateString(req.params.day,req.params.month,req.params.year);
     var year=Number(req.params.year);

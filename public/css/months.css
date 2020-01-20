@@ -20,28 +20,46 @@
     flex: 0 0 14.28%; 
     max-width: 14.28%;
     width: 100%; 
-    background-color: rgb(211, 211, 211);
+    height:5em!important;
+    background-color: rgb(4, 45, 68);
     justify-content: center;
     font-weight: bold;
-    color: grey;
+    color: white;
     font-size: 1.5vw;
 }
-
+.filler-day{
+    background-color: rgb(59, 80, 97);
+}
 h1{
     color:whitesmoke;
     text-shadow: 2px 2px 5px black;
 }
-
+.day{
+    position:relative;
+    width: 100%;height:6em;
+    overflow: hidden;
+}
 .day:hover{
     box-shadow: inset 0 0 10px grey;
     transition-duration: 100ms;
 }
 .streak{
-    color:green;
-    background-color:rgb(228, 241, 207);
-    font-weight: bolder;
+    position: absolute;
+    bottom: 0;
+    background-color:rgba(55, 142, 214, 0.4);
+    width:100%;
+    height: 100%;
 }
 .streak:hover {
-    
-    transition-duration: 0.5s;
+    transition-duration: 0.3s;
+}
+.border{
+    flex: 0 0 14.28%;
+    max-width: 14.28%;
+    width: 100%;
+    height:6em;
+}
+.day-streak{
+    color:rgb(6, 88, 143);
+    font-weight: bolder;
 }

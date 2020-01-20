@@ -31,26 +31,29 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <% var totalHours=0 %>
                     <% entries.forEach(function(entry){ %>
-                    <tr class="item">
-                        <td class="dateCol"><%= entry.date %></td>
-                        <td class="progressCol"><%= entry.progress %></td>
-                        <td class="hoursCol">
-                            <div class="hoursColContent">
-                                <%= entry.hours %>
-                                <div class="responsiveButtons">
-                                    <form action="/months/<%=goalId%>/<%=year%>/<%=month%>/<%=day%>/<%=entry._id%>?_method=DELETE" method="POST">
-                                        <button type="submit" class="btn btn-danger deleteButton"><i class="fas fa-trash-alt"></i></button>
-                                    </form>
-                                    <a href="/months/<%=goalId%>/<%=year%>/<%=month%>/<%=day%>/<%= entry._id %>/edit" class="btn btn-secondary editButton"><i class="fas fa-edit"></i></a>
+                        <% totalHours= totalHours+Number(entry.hours) %>
+                        <tr class="item">
+                            <td class="dateCol"><%= entry.date %></td>
+                            <td class="progressCol"><%= entry.progress %></td>
+                            <td class="hoursCol">
+                                <div class="hoursColContent">
+                                    <%= entry.hours %>
+                                    <div class="responsiveButtons">
+                                        <form action="/months/<%=goalId%>/<%=year%>/<%=month%>/<%=day%>/<%=entry._id%>?_method=DELETE" method="POST">
+                                            <button type="submit" class="btn btn-danger deleteButton"><i class="fas fa-trash-alt"></i></button>
+                                        </form>
+                                        <a href="/months/<%=goalId%>/<%=year%>/<%=month%>/<%=day%>/<%= entry._id %>/edit" class="btn btn-secondary editButton"><i class="fas fa-edit"></i></a>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        
-                    </tr>           
+                            </td>
+                            
+                        </tr>           
                     <%})%> 
                 </tbody>
             </table>
+            <div class="total-hours">Total Hours: <%= totalHours %></div>
             <a href="/months/<%=goalId%>/<%=year%>/<%=month%>/<%=day%>/new" class="btn btn-primary">Add an entry</a>
         </div>
     </div>

@@ -8,7 +8,7 @@ var getDaysInMonth= function(year,month){
     var lastDayObj= new Date(year,month,0);
     //returns the last day of the month:
     var lastDay=lastDayObj.getDate();
-    daysArr=[];
+    var daysArr=[];
     for(var i=1; i<=lastDay; i++){
         iString=i.toString();
         if(iString.length===1){
@@ -46,13 +46,20 @@ router.get("/months/:goalId/:year/:month", function(req,res){
     });
     entriesCollection.find({date:{$regex:yearStr+"-"+monthStr+"-"}, goalId:goalId}).toArray(function(err, docs) {
         if(err){console.log("Not Found")};
-        //Constructs an array of days of each entry in current month
-        var entryArr=[];
+        //Constructs an object of days of each entry in current month
+        var allDaysArr=getDaysInMonth(year,month);
+        console.log(allDaysArr);
+        var allEntriesObj={};
+        allDaysArr.forEach(function(day){
+            allEntriesObj[day]=0;
+        });
         docs.forEach(function(doc){
             var dateString=doc.date;
-            entryArr.push(dateString.substr(dateString.length-2,2));
+            dateString=dateString.substr(dateString.length-2,2);
+            allEntriesObj[dateString]+=Number(doc.hours);
         });
-        res.render('months.ejs', {month:month,year:year, entryArr:entryArr, goalId:goalId, goalStr:goalStr, goalsArr:goalsArr, getDaysInMonth:getDaysInMonth});
+        console.log(allEntriesObj);
+        res.render('months.ejs', {month:month,year:year, allEntriesObj:allEntriesObj, goalId:goalId, goalStr:goalStr, goalsArr:goalsArr, getDaysInMonth:getDaysInMonth});
         });    
     }); 
 
